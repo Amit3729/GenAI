@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: text2sql
+      POSTGRES_PASSWORD: text2sql_pass
+      POSTGRES_DB: text2sql_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./sql/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - DATABASE_URL=postgresql://text2sql:text2sql_pass@db:5432/text2sql_db
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  api:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://text2sql:text2sql_pass@db:5432/text2sql_db
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+volumes:
+  db_data:
