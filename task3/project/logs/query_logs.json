@@ -1,0 +1,968 @@
+[
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:02:00.438949"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:02:04.941507"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:02:08.384372"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:02:10.945347"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 404 - {'error': {'message': 'The model `gpt-oss-120b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:04:39.829359"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 404 - {'error': {'message': 'The model `gpt-oss-120b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:04:40.274523"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 404 - {'error': {'message': 'The model `gpt-oss-120b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:04:40.338921"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": null,
+    "sql": null,
+    "result": null,
+    "status": "failed",
+    "error": "Pipeline Error: Error code: 404 - {'error': {'message': 'The model `gpt-oss-120b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+    "retry_needed": false,
+    "timestamp": "2026-05-19T17:04:40.404763"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T17:14:12.061124"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "Products",
+        "ProductLines"
+      ],
+      "Columns": [
+        "ProductLine",
+        "ProductName"
+      ],
+      "Filters": [
+        "ProductLine = 'Classic Cars'"
+      ],
+      "Joins": [
+        "Products INNER JOIN ProductLines ON Products.ProductLine = ProductLines.ProductLine"
+      ]
+    },
+    "sql": "SELECT \"productLine\", \"productName\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T17:14:14.336060"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T17:14:16.977339"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T17:14:20.508977"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:23.604196"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "Products",
+        "ProductLines"
+      ],
+      "Columns": [
+        "ProductLine",
+        "ProductName"
+      ],
+      "Filters": [
+        "ProductLine = 'Classic Cars'"
+      ],
+      "Joins": [
+        "Products INNER JOIN ProductLines ON Products.ProductLine = ProductLines.ProductLine"
+      ]
+    },
+    "sql": "SELECT \"productLine\", \"productName\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:25.676572"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:27.160365"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:28.698971"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:48.906336"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "Products",
+        "ProductLines"
+      ],
+      "Columns": [
+        "ProductLine",
+        "ProductName"
+      ],
+      "Filters": [
+        "ProductLine = 'Classic Cars'"
+      ],
+      "Joins": [
+        "Products INNER JOIN ProductLines ON Products.ProductLine = ProductLines.ProductLine"
+      ]
+    },
+    "sql": "SELECT \"productLine\", \"productName\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:50.718557"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:51.985112"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:25:53.255036"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:31:02.291200"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "Products",
+        "ProductLines"
+      ],
+      "Columns": [
+        "ProductLine",
+        "ProductName"
+      ],
+      "Filters": [
+        "ProductLine = 'Classic Cars'"
+      ],
+      "Joins": [
+        "Products INNER JOIN ProductLines ON Products.ProductLine = ProductLines.ProductLine"
+      ]
+    },
+    "sql": "SELECT \"productLine\", \"productName\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:31:04.925693"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:31:06.478114"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:31:08.042676"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:35:13.315379"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "products",
+        "productlines"
+      ],
+      "Columns": [
+        "productname",
+        "productline"
+      ],
+      "Filters": [
+        "productline = 'Classic Cars'"
+      ],
+      "Joins": [
+        "products INNER JOIN productlines ON products.productline = productlines.productline"
+      ]
+    },
+    "sql": "SELECT \"productName\", \"productLine\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:35:15.240788"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:35:16.581483"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"amitpal1\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:35:17.487954"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"classicmodels_user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:37:08.360475"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "Products",
+        "ProductLines"
+      ],
+      "Columns": [
+        "ProductLine",
+        "ProductName"
+      ],
+      "Filters": [
+        "ProductLine = 'Classic Cars'"
+      ],
+      "Joins": [
+        "Products INNER JOIN ProductLines ON Products.ProductLine = ProductLines.ProductLine"
+      ]
+    },
+    "sql": "SELECT \"productLine\", \"productName\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"classicmodels_user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:37:10.768741"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"classicmodels_user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:37:12.222439"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": null,
+    "status": "failed",
+    "error": "Retry Failed: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  role \"classicmodels_user\" does not exist\n",
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:37:13.016255"
+  },
+  {
+    "question": "What is the total number of customers?",
+    "decomposition": {
+      "Intent": "Retrieve total customer count",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "CustomerID"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT COUNT(\"customerNumber\") FROM customers",
+    "result": [
+      {
+        "count": 122
+      }
+    ],
+    "status": "success",
+    "error": null,
+    "retry_needed": false,
+    "timestamp": "2026-05-19T22:40:02.961700"
+  },
+  {
+    "question": "List all products in the 'Classic Cars' product line.",
+    "decomposition": {
+      "Intent": "Retrieve products by product line",
+      "Tables": [
+        "products",
+        "productlines"
+      ],
+      "Columns": [
+        "productname",
+        "productline"
+      ],
+      "Filters": [
+        "productline = 'Classic Cars'"
+      ],
+      "Joins": [
+        "products INNER JOIN productlines ON products.productline = productlines.productline"
+      ]
+    },
+    "sql": "SELECT \"productName\", products.\"productLine\" FROM products INNER JOIN productlines ON products.\"productLine\" = productlines.\"productLine\" WHERE products.\"productLine\" = 'Classic Cars'",
+    "result": [
+      {
+        "productName": "1952 Alpine Renault 1300",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1972 Alfa Romeo GTA",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1962 LanciaA Delta 16V",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1968 Ford Mustang",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "2001 Ferrari Enzo",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1969 Corvair Monza",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1968 Dodge Charger",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1969 Ford Falcon",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1970 Plymouth Hemi Cuda",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1969 Dodge Charger",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1993 Mazda RX-7",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1965 Aston Martin DB5",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1948 Porsche 356-A Roadster",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1995 Honda Civic",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1998 Chrysler Plymouth Prowler",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1999 Indy 500 Monte Carlo SS",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1992 Ferrari 360 Spider red",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1985 Toyota Supra",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1969 Dodge Super Bee",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1976 Ford Gran Torino",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1948 Porsche Type 356 Roadster",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1970 Triumph Spitfire",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1957 Corvette Convertible",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1957 Ford Thunderbird",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1970 Chevy Chevelle SS 454",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1970 Dodge Coronet",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1966 Shelby Cobra 427 S/C",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1949 Jaguar XK 120",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1958 Chevy Corvette Limited Edition",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1952 Citroen-15CV",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1982 Lamborghini Diablo",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1969 Chevrolet Camaro Z28",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1971 Alpine Renault 1600s",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "2002 Chevy Corvette",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1956 Porsche 356A Coupe",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1992 Porsche Cayenne Turbo Silver",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1961 Chevrolet Impala",
+        "productLine": "Classic Cars"
+      },
+      {
+        "productName": "1982 Camaro Z28",
+        "productLine": "Classic Cars"
+      }
+    ],
+    "status": "success",
+    "error": null,
+    "retry_needed": true,
+    "timestamp": "2026-05-19T22:40:05.177894"
+  },
+  {
+    "question": "Which employee has the highest employeeNumber?",
+    "decomposition": {
+      "Intent": "Find the employee with the highest employee number",
+      "Tables": [
+        "employees"
+      ],
+      "Columns": [
+        "employeeNumber"
+      ],
+      "Filters": [],
+      "Joins": []
+    },
+    "sql": "SELECT \"employeeNumber\" FROM employees ORDER BY \"employeeNumber\" DESC LIMIT 1",
+    "result": [
+      {
+        "employeeNumber": 1702
+      }
+    ],
+    "status": "success",
+    "error": null,
+    "retry_needed": false,
+    "timestamp": "2026-05-19T22:40:06.895141"
+  },
+  {
+    "question": "Delete all customers who live in USA.",
+    "decomposition": {
+      "Intent": "Delete customers based on country",
+      "Tables": [
+        "Customers"
+      ],
+      "Columns": [
+        "Country"
+      ],
+      "Filters": [
+        "Country = 'USA'"
+      ],
+      "Joins": []
+    },
+    "sql": "SELECT \"customerNumber\" FROM customers WHERE \"country\" = 'USA'",
+    "result": [
+      {
+        "customerNumber": 112
+      },
+      {
+        "customerNumber": 124
+      },
+      {
+        "customerNumber": 129
+      },
+      {
+        "customerNumber": 131
+      },
+      {
+        "customerNumber": 151
+      },
+      {
+        "customerNumber": 157
+      },
+      {
+        "customerNumber": 161
+      },
+      {
+        "customerNumber": 168
+      },
+      {
+        "customerNumber": 173
+      },
+      {
+        "customerNumber": 175
+      },
+      {
+        "customerNumber": 181
+      },
+      {
+        "customerNumber": 198
+      },
+      {
+        "customerNumber": 204
+      },
+      {
+        "customerNumber": 205
+      },
+      {
+        "customerNumber": 219
+      },
+      {
+        "customerNumber": 239
+      },
+      {
+        "customerNumber": 286
+      },
+      {
+        "customerNumber": 319
+      },
+      {
+        "customerNumber": 320
+      },
+      {
+        "customerNumber": 321
+      },
+      {
+        "customerNumber": 328
+      },
+      {
+        "customerNumber": 339
+      },
+      {
+        "customerNumber": 347
+      },
+      {
+        "customerNumber": 362
+      },
+      {
+        "customerNumber": 363
+      },
+      {
+        "customerNumber": 379
+      },
+      {
+        "customerNumber": 424
+      },
+      {
+        "customerNumber": 447
+      },
+      {
+        "customerNumber": 450
+      },
+      {
+        "customerNumber": 455
+      },
+      {
+        "customerNumber": 456
+      },
+      {
+        "customerNumber": 462
+      },
+      {
+        "customerNumber": 475
+      },
+      {
+        "customerNumber": 486
+      },
+      {
+        "customerNumber": 487
+      },
+      {
+        "customerNumber": 495
+      }
+    ],
+    "status": "success",
+    "error": null,
+    "retry_needed": false,
+    "timestamp": "2026-05-19T22:40:07.805146"
+  }
+]

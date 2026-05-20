@@ -1,0 +1,51 @@
+Question,Intent,Tables,Columns,Filters,Joins
+List all products,Retrieve all products from the database,products,*,,
+Get all customers,Retrieve all customer data,Customers,*,,
+Show all orders,Retrieve all orders from the database,orders,*,,
+List all employees,Retrieve all employee data,Employees,*,,
+Get all offices,Retrieve all office records,offices,*,,
+Show all product lines,Retrieve all product lines from the database,product_lines,*,,
+List all payments,Retrieve all payment records,Payments,*,,
+Get product names and prices,Retrieve product information,Products,"product_name, price",,
+Get customer names and cities,Retrieve customer information,Customers,"CustomerName, City",,
+List employee first and last names,Retrieve employee names,Employees,"first_name, last_name",,
+Get all order dates,Retrieve all order dates from the database,Orders,OrderDate,,
+Show product vendor list,Retrieve a list of vendors for products,"Products, Vendors","Product_Name, Vendor_Name",,Products_Vendors
+Get all product codes,Retrieve all product codes from the database,Products,ProductCode,,
+List all countries from offices,Retrieve a list of countries from the offices,offices,country,,
+Show all order statuses,Retrieve all order statuses from the database,orders,status,,
+Get all payment amounts,Retrieve all payment amounts from the database,Payments,payment_amount,,
+List all job titles,Retrieve a list of all job titles,jobs,job_title,,
+Get customer phone numbers,Retrieve customer phone numbers,Customers,Phone_Number,,
+Show product MSRP values,Retrieve product MSRP values,Products,MSRP,,
+List order numbers,Retrieve a list of order numbers,Orders,OrderNumber,,
+Get orders with customer names,Retrieve orders along with the corresponding customer names,"Orders, Customers","OrderID, CustomerName",,Orders.CustomerID = Customers.CustomerID
+Get employees with office city,Retrieve employee information along with their office city,"Employees, Offices","employee_name, office_city",,Employees.office_id = Offices.office_id
+Get payments with customer names,Retrieve payment information along with corresponding customer names,"Payments, Customers","payment_id, customer_name, payment_amount",,Payments.customer_id = Customers.customer_id
+Get order details with product names,Retrieve order details along with corresponding product names,"Orders, Products","OrderID, ProductID, ProductName, OrderDate",,Orders.ProductID = Products.ProductID
+Get products with product line description,Retrieve products along with their respective product line descriptions,"products, productlines","product_name, product_line_description",,products.product_line = productlines.product_line
+Get customers with sales rep names,Retrieve customer information along with their respective sales representative names,"Customers, SalesReps","CustomerName, SalesRepName",,Customers.SalesRepID = SalesReps.SalesRepID
+Get orders with customer city,Retrieve orders along with the city of the customer,"Orders, Customers","Orders.*, Customers.City",,Orders.CustomerID = Customers.CustomerID
+Get employees and their manager,Retrieve employee and manager information,"Employees, Managers","Employee_ID, Employee_Name, Manager_ID, Manager_Name",,Employees.Manager_ID = Managers.Manager_ID
+Get orderdetails with product vendor,Retrieve order details along with the vendor information of the products,"OrderDetails, Products, Vendors","OrderDetailID, ProductID, VendorID, VendorName",,"OrderDetails INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID, Products INNER JOIN Vendors ON Products.VendorID = Vendors.VendorID"
+Get payments with customer country,Retrieve payment information along with the country of the customer,"Payments, Customers","payment_id, customer_id, country",,Payments.customer_id = Customers.customer_id
+Count customers per country,Count the number of customers per country,"Customers, Countries","CountryID, CustomerID, CountryName",,Customers.CountryID = Countries.CountryID
+Total payments per customer,Calculate the total payments made by each customer,"Customers, Payments","CustomerID, PaymentAmount",,Customers.CustomerID = Payments.CustomerID
+Number of orders per status,Retrieve the count of orders grouped by their status,orders,status,,
+Products per product line,Retrieve products grouped by product line,"Products, ProductLines","ProductLine, ProductName",,Products.ProductLine = ProductLines.ProductLine
+Employees per office,Retrieve the number of employees per office,"Employees, Offices","OfficeID, EmployeeID",,Employees.OfficeID = Offices.OfficeID
+Total stock per product vendor,Calculate total stock for each product vendor,"Products, Vendors, Stock","ProductID, VendorID, StockQuantity",,"Products-Vendors, Products-Stock"
+Average buy price per product line,Calculate the average buy price for each product line,"products, orders, order_details","product_line, buy_price",,"products WITH orders ON products.product_id = orders.product_id, orders WITH order_details ON orders.order_id = order_details.order_id"
+Orders per customer,Retrieve the number of orders for each customer,"Customers, Orders","CustomerID, OrderID, CustomerName",,Customers.CustomerID = Orders.CustomerID
+Max MSRP per product line,Find the maximum MSRP for each product line,"products, product_lines","MSRP, product_line",,products.product_line = product_lines.product_line
+Min buy price per vendor,Find the minimum buy price for each vendor,"Vendors, Purchases","VendorID, BuyPrice",,Vendors ON Vendors.VendorID = Purchases.VendorID
+Total number of customers,Retrieve the total count of customers,Customers,CustomerID,,
+Total number of products,Retrieve the total count of products,products,product_id,,
+Total revenue from payments,Calculate total revenue from payments,payments,amount,,
+Average product price,Calculate the average price of products,Products,Price,,
+Max payment amount,Find the maximum payment amount,payments,payment_amount,,
+Min payment amount,Find the minimum payment amount,payments,amount,,
+Count total orders,To calculate the total number of orders,orders,order_id,,
+Total quantity in stock,Retrieve the total quantity of items in stock,Inventory,Quantity,,
+Average MSRP,Calculate the average MSRP,"vehicles, prices",MSRP,,
+Number of employees,Retrieve the count of employees,Employees,EmployeeID,,
